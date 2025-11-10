@@ -13,13 +13,15 @@ var corsConfig = builder.Configuration.GetSection("CorsOrigins");
 var vercelApp = corsConfig["VercelApp"];
 var localApp = corsConfig["LocalApp"];
 
+// TEMP: Geliştirme/Debug için tüm origin'lere izin veriyorum
+// (Render üzerindeki CORS problemini hızlıca eleyip, sonra daha sıkı policy'ye döneceğiz)
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins(vercelApp, localApp) // Sadece bu adreslere izin ver
-              .AllowAnyHeader()                 // Tüm Header'lara izin ver
-              .AllowAnyMethod();                // Tüm Metotlara (GET, POST, PUT) izin ver
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -53,5 +55,20 @@ app.UseCors(); // <--
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Apply pending EF Core migrations at startup (creates DB/tables if needed)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    try
+    {
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        // Log migration errors to console so Render logs capture them
+        Console.WriteLine($"Migration error: {ex.Message}");
+    }
+}
 
 app.Run();
