@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 
 // ---- YENİ BÖLÜM: API ADRESİ ----
-// Adım 5.1'de bulduğun .NET API adresin
-// Senin adresin 'http://localhost:5206' idi.
-const API_URL = "http://localhost:5206/api/chat";
+// Render üzerinde yayınladığımız .NET API adresi
+// (Örnek: https://stajyerprojem-api.onrender.com)
+const API_URL = "https://stajyerprojem-api.onrender.com/api/chat";
 
 function Chat({ nickname }) {
   const [messages, setMessages] = useState([]); 
