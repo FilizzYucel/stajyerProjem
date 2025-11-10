@@ -2,13 +2,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# 2. Adım: Proje dosyalarını kopyala ve bağımlılıkları yükle
-COPY ["emotion-analysis-AIproject/backend/KonusarakOgren.Api/KonusarakOgren.Api.csproj", "KonusarakOgren.Api/"]
-RUN dotnet restore "KonusarakOgren.Api/KonusarakOgren.Api.csproj"
+# 2. Adım: Proje dosyalarını kopyala
+# (Artık tam yolu yazmıyoruz, ".csproj" dosyasını BUL diyoruz)
+COPY *.csproj .
+RUN dotnet restore
 
 # 3. Adım: Tüm kaynak kodunu kopyala ve projeyi derle (Build)
 COPY . .
-WORKDIR "/src/emotion-analysis-AIproject/backend/KonusarakOgren.Api"
 RUN dotnet build "KonusarakOgren.Api.csproj" -c Release -o /app/build
 
 # 4. Adım: Derlenen projeyi yayınla (Publish)
