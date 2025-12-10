@@ -1,6 +1,6 @@
-# Konuşarak Öğren — Full‑Stack + AI Stajyer Projesi
+# Full‑Stack + AI Projesi
 
-Bu proje, `Konuşarak Öğren` için geliştirilmiş 3 günlük bir Full‑Stack + AI duygu analizi staj projesinin kaynak kodlarını içerir. Proje; react ile web ve mobil arayüzleri, .NET tabanlı bir backend API'yi ve bir Gradio tabanlı AI servisini kapsar. Canlı olarak Vercel (frontend), Render (backend) ve Hugging Face Spaces (AI) üzerinde yayınlanmıştır.
+Bu proje, 3 günde geliştirilmiş bir Full‑Stack + AI duygu analizi staj projesinin kaynak kodlarını içerir. Proje; react ile web ve mobil arayüzleri, .NET tabanlı bir backend API'yi ve bir Gradio tabanlı AI servisini kapsar. Canlı olarak Vercel (frontend), Render (backend) ve Hugging Face Spaces (AI) üzerinde yayınlanmıştır.
 
 ## Demo (Canlı Linkler)
 
